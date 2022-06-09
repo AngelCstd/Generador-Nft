@@ -48,7 +48,7 @@ public class VentanaFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!panel.isVisible()) {
-                    panel.repaint();
+                    panel.cambiarImagen();
                     panel.setVisible(true);
                 } else {
                     panel.removeAll();
