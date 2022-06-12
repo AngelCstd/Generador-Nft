@@ -6,20 +6,28 @@ import javax.swing.ImageIcon;
 public class ControlImagen {
 
     ImageIcon background = null, eyes = null, mouth = null;
-    File archivos[];
+    File archivos[][] = new File[10][50];
+    int contador = 0;
 
     public ControlImagen() {
 
     }
     public void enviarArchivosControlImagen(File[] archivos){
-        this.archivos = archivos;
+        //guardo los archivos de la imagen en la matriz
+        for (int i = 0; i < archivos.length; i++) {
+            //se van guardando de uno en uno
+        this.archivos[contador][i] = archivos[i];    
+        }
+        //aumenta el contador para que puedan seguirse guardando en la otra fila de la matriz
+        contador++;
+        
     }
 
     public void randomCuerpo() {
         //inicio un iterador que permita el flujo de archivos
         int i = 0;
         
-        ImageIcon fondo = new ImageIcon(this.archivos[i].getAbsolutePath());
+        ImageIcon fondo = new ImageIcon(this.archivos[i][i].getAbsolutePath());
         this.background = fondo;
         this.eyes = fondo;
         this.mouth = fondo;
