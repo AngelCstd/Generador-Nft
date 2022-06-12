@@ -1,38 +1,50 @@
 package Ventana;
 
+import java.io.File;
 import javax.swing.ImageIcon;
 
 public class ControlImagen {
 
     ImageIcon background = null, eyes = null, mouth = null;
-    public ControlImagen(){
-        randomCuerpo();
-        randomOjos();
-        randomBoca();
+    File archivos[];
+
+    public ControlImagen() {
+
+    }
+    public void enviarArchivosControlImagen(File[] archivos){
+        this.archivos = archivos;
     }
 
-    public ImageIcon randomCuerpo() {
-        ImageIcon fondo = new ImageIcon(getClass().getResource("fondo.png"));
-        ImageIcon fondo1 = new ImageIcon(getClass().getResource("fondo1.png"));
-        ImageIcon fondo2 = new ImageIcon(getClass().getResource("fondo2.png"));
-        int random = (int) (Math.random() * 3);
-        switch (random) {
-            case 0:
-                this.background = fondo;
-                break;
-            case 1:
+    public void randomCuerpo() {
+        //inicio un iterador que permita el flujo de archivos
+        int i = 0;
+        
+        ImageIcon fondo = new ImageIcon(this.archivos[i].getAbsolutePath());
+        this.background = fondo;
+        this.eyes = fondo;
+        this.mouth = fondo;
 
-                this.background = fondo1;
-                break;
-            case 2:
-
-                this.background = fondo2;
-                break;
-        }
-        return null;
+        
+//        ImageIcon fondo = new ImageIcon(getClass().getResource("fondo.png"));
+//        ImageIcon fondo1 = new ImageIcon(getClass().getResource("fondo1.png"));
+//        ImageIcon fondo2 = new ImageIcon(getClass().getResource("fondo2.png"));
+//        int random = (int) (Math.random() * 3);
+//        switch (random) {
+//            case 0:
+//                this.background = fondo;
+//                break;
+//            case 1:
+//
+//                this.background = fondo1;
+//                break;
+//            case 2:
+//
+//                this.background = fondo2;
+//                break;
+//        }
     }
 
-    public ImageIcon randomOjos() {
+    public void randomOjos() {
         ImageIcon ojos = new ImageIcon(getClass().getResource("ojos.png"));
         ImageIcon ojos1 = new ImageIcon(getClass().getResource("ojos1.png"));
         ImageIcon ojos2 = new ImageIcon(getClass().getResource("ojos2.png"));
@@ -49,10 +61,9 @@ public class ControlImagen {
                 this.eyes = ojos2;
                 break;
         }
-        return null;
     }
 
-    public ImageIcon randomBoca() {
+    public void randomBoca() {
         ImageIcon boca = new ImageIcon(getClass().getResource("boca.png"));
         ImageIcon boca1 = new ImageIcon(getClass().getResource("boca1.png"));
         int random3 = (int) (Math.random() * 2);
@@ -64,7 +75,6 @@ public class ControlImagen {
                 this.mouth = boca1;
                 break;
         }
-        return null;
     }
 
     public ImageIcon getFondo() {
@@ -78,5 +88,5 @@ public class ControlImagen {
     public ImageIcon getBoca() {
         return mouth;
     }
-    
+
 }

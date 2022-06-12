@@ -4,11 +4,13 @@ import java.awt.*;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
+import java.io.File;
 import javax.swing.*;
 
 public class Panel extends JPanel implements Printable {
 
     ControlImagen c = new ControlImagen();
+    boolean pintado = false;
 
     public Panel() {
         iniciarPanel();
@@ -17,9 +19,15 @@ public class Panel extends JPanel implements Printable {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        g.drawImage(c.getFondo().getImage(), 0, 0, 500, 500, this);
-        g.drawImage(c.getOjos().getImage(), 0, 0, 500, 500, this);
-        g.drawImage(c.getBoca().getImage(), 0, 0, 500, 500, this);
+        if (pintado == true) {
+            g.drawImage(c.getFondo().getImage(), 0, 0, 500, 500, this);
+            g.drawImage(c.getOjos().getImage(), 0, 0, 500, 500, this);
+            g.drawImage(c.getBoca().getImage(), 0, 0, 500, 500, this);
+        }
+        if (pintado == false) {
+
+        }
+
     }
 
     private void iniciarPanel() {
@@ -28,10 +36,15 @@ public class Panel extends JPanel implements Printable {
         this.setVisible(false);
     }
 
+    public void enviarArchivosPanel(File[] archivos) {
+        c.enviarArchivosControlImagen(archivos);
+    }
+
     public void cambiarImagen() {
+        pintado = true;
         c.randomCuerpo();
-        c.randomBoca();
-        c.randomOjos();
+//        c.randomBoca();
+//        c.randomOjos();
         repaint();
     }
 
