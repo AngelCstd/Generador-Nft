@@ -19,10 +19,45 @@ public class Panel extends JPanel implements Printable {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if (pintado == true) {
-            g.drawImage(c.getFondo().getImage(), 0, 0, 500, 500, this);
-            g.drawImage(c.getOjos().getImage(), 0, 0, 500, 500, this);
-            g.drawImage(c.getBoca().getImage(), 0, 0, 500, 500, this);
+        if (pintado == true && c.getImagen1() != null) {
+            g.drawImage(c.getImagen1().getImage(), 0, 0, 500, 500, this);
+
+            if (pintado == true && c.getImagen2() != null) {
+                g.drawImage(c.getImagen2().getImage(), 0, 0, 500, 500, this);
+
+                if (pintado == true && c.getImagen3() != null) {
+                    g.drawImage(c.getImagen3().getImage(), 0, 0, 500, 500, this);
+
+                    if (pintado == true && c.getImagen4() != null) {
+                        g.drawImage(c.getImagen4().getImage(), 0, 0, 500, 500, this);
+
+                        if (pintado == true && c.getImagen5() != null) {
+                            g.drawImage(c.getImagen5().getImage(), 0, 0, 500, 500, this);
+
+                            if (pintado == true && c.getImagen6() != null) {
+                                g.drawImage(c.getImagen6().getImage(), 0, 0, 500, 500, this);
+                                
+                                if (pintado == true && c.getImagen7() != null) {
+                                    g.drawImage(c.getImagen7().getImage(), 0, 0, 500, 500, this);
+
+                                    if (pintado == true && c.getImagen8() != null) {
+                                        g.drawImage(c.getImagen8().getImage(), 0, 0, 500, 500, this);
+
+                                        if (pintado == true && c.getImagen9() != null) {
+                                            g.drawImage(c.getImagen9().getImage(), 0, 0, 500, 500, this);
+                                            
+                                            if (pintado == true && c.getImagen10() != null) {
+                                                g.drawImage(c.getImagen10().getImage(), 0, 0, 500, 500, this);
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
         if (pintado == false) {
 
@@ -42,9 +77,7 @@ public class Panel extends JPanel implements Printable {
 
     public void cambiarImagen() {
         pintado = true;
-        c.randomCuerpo();
-//        c.randomBoca();
-//        c.randomOjos();
+        c.mostrarImagenes();
         repaint();
     }
 

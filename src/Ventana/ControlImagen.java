@@ -5,96 +5,120 @@ import javax.swing.ImageIcon;
 
 public class ControlImagen {
 
-    ImageIcon background = null, eyes = null, mouth = null;
+    ImageIcon imagen1 = null, imagen2 = null, imagen3 = null, imagen4 = null, imagen5 = null, imagen6 = null, imagen7 = null;
+    ImageIcon imagen8 = null, imagen9 = null, imagen10 = null;
     File archivos[][] = new File[10][50];
     int contador = 0;
+    //inicio un iterador que permita el flujo de archivos
+    int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, i = 0, j = 0;
 
     public ControlImagen() {
 
     }
-    public void enviarArchivosControlImagen(File[] archivos){
-        //guardo los archivos de la imagen en la matriz
+
+    public void enviarArchivosControlImagen(File[] archivos) {
+        //guardo los archivos de la imagen en la matriz de uno en uno
         for (int i = 0; i < archivos.length; i++) {
-            //se van guardando de uno en uno
-        this.archivos[contador][i] = archivos[i];    
+            this.archivos[contador][i] = archivos[i];
         }
-        //aumenta el contador para que puedan seguirse guardando en la otra fila de la matriz
+        //aumenta el contador para que puedan seguirse guardando en la otra fila de la matriz al usar el metodo nuevamente
         contador++;
-        
+
     }
 
-    public void randomCuerpo() {
-        //inicio un iterador que permita el flujo de archivos
-        int i = 0;
-        
-        ImageIcon fondo = new ImageIcon(this.archivos[i][i].getAbsolutePath());
-        this.background = fondo;
-        this.eyes = fondo;
-        this.mouth = fondo;
+    public void mostrarImagenes() {
+        //creo condicionales para que se puedan cargar las imagenes
+        if (this.archivos[0][a] != null) {
+            ImageIcon image1 = new ImageIcon(this.archivos[0][a].getAbsolutePath());
+            this.imagen1 = image1;
+            a++;
+            if (this.archivos[1][b] != null) {
+                ImageIcon image2 = new ImageIcon(this.archivos[1][b].getAbsolutePath());
+                this.imagen2 = image2;
+                b++;
+                if (this.archivos[2][c] != null) {
+                    ImageIcon image3 = new ImageIcon(this.archivos[2][c].getAbsolutePath());
+                    this.imagen3 = image3;
+                    c++;
+                    if (this.archivos[3][d] != null) {
+                        ImageIcon image4 = new ImageIcon(this.archivos[3][d].getAbsolutePath());
+                        this.imagen4 = image4;
+                        d++;
+                        if (this.archivos[4][e] != null) {
+                            ImageIcon image5 = new ImageIcon(this.archivos[4][e].getAbsolutePath());
+                            this.imagen5 = image5;
+                            e++;
+                            if (this.archivos[5][f] != null) {
+                                ImageIcon image6 = new ImageIcon(this.archivos[5][f].getAbsolutePath());
+                                this.imagen6 = image6;
+                                f++;
+                                if (this.archivos[6][g] != null) {
+                                    ImageIcon image7 = new ImageIcon(this.archivos[6][g].getAbsolutePath());
+                                    this.imagen7 = image7;
+                                    g++;
+                                    if (this.archivos[7][h] != null) {
+                                        ImageIcon image8 = new ImageIcon(this.archivos[7][h].getAbsolutePath());
+                                        this.imagen8 = image8;
+                                        h++;
+                                        if (this.archivos[8][i] != null) {
+                                            ImageIcon image9 = new ImageIcon(this.archivos[8][i].getAbsolutePath());
+                                            this.imagen9 = image9;
+                                            i++;
+                                            if (this.archivos[9][j] != null) {
+                                                ImageIcon image10 = new ImageIcon(this.archivos[9][j].getAbsolutePath());
+                                                this.imagen10 = image10;
+                                                j++;
 
-        
-//        ImageIcon fondo = new ImageIcon(getClass().getResource("fondo.png"));
-//        ImageIcon fondo1 = new ImageIcon(getClass().getResource("fondo1.png"));
-//        ImageIcon fondo2 = new ImageIcon(getClass().getResource("fondo2.png"));
-//        int random = (int) (Math.random() * 3);
-//        switch (random) {
-//            case 0:
-//                this.background = fondo;
-//                break;
-//            case 1:
-//
-//                this.background = fondo1;
-//                break;
-//            case 2:
-//
-//                this.background = fondo2;
-//                break;
-//        }
-    }
-
-    public void randomOjos() {
-        ImageIcon ojos = new ImageIcon(getClass().getResource("ojos.png"));
-        ImageIcon ojos1 = new ImageIcon(getClass().getResource("ojos1.png"));
-        ImageIcon ojos2 = new ImageIcon(getClass().getResource("ojos2.png"));
-        int random1 = (int) (Math.random() * 3);
-        switch (random1) {
-            case 0:
-                this.eyes = ojos;
-                break;
-            case 1:
-                this.eyes = ojos1;
-                break;
-            case 2:
-
-                this.eyes = ojos2;
-                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
-    public void randomBoca() {
-        ImageIcon boca = new ImageIcon(getClass().getResource("boca.png"));
-        ImageIcon boca1 = new ImageIcon(getClass().getResource("boca1.png"));
-        int random3 = (int) (Math.random() * 2);
-        switch (random3) {
-            case 0:
-                this.mouth = boca;
-                break;
-            case 1:
-                this.mouth = boca1;
-                break;
-        }
+    public ImageIcon getImagen1() {
+        return imagen1;
     }
 
-    public ImageIcon getFondo() {
-        return background;
+    public ImageIcon getImagen2() {
+        return imagen2;
     }
 
-    public ImageIcon getOjos() {
-        return eyes;
+    public ImageIcon getImagen3() {
+        return imagen3;
     }
 
-    public ImageIcon getBoca() {
-        return mouth;
+    public ImageIcon getImagen4() {
+        return imagen4;
+    }
+
+    public ImageIcon getImagen5() {
+        return imagen5;
+    }
+
+    public ImageIcon getImagen6() {
+        return imagen6;
+    }
+
+    public ImageIcon getImagen7() {
+        return imagen7;
+    }
+
+    public ImageIcon getImagen8() {
+        return imagen8;
+    }
+
+    public ImageIcon getImagen9() {
+        return imagen9;
+    }
+
+    public ImageIcon getImagen10() {
+        return imagen10;
     }
 
 }
