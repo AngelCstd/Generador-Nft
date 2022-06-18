@@ -78,7 +78,7 @@ public class VentanaFrame extends JFrame {
                     //vamos a agregar los archivos a un arreglo de archivos y lo mandamos y despues mostramos las imagenes
                     archivos = fc.getSelectedFiles();
                     panel.enviarArchivosPanel(archivos);
-                    panel.cambiarImagen();
+                    panel.cargaCambioImagenes();
                 }
                 if (seleccion == JFileChooser.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(null, "Ha cancelado la carga de imagen");
@@ -89,16 +89,12 @@ public class VentanaFrame extends JFrame {
         buttonimprimir.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panel.cambiarImagen();
-//                PrinterJob job = PrinterJob.getPrinterJob();
-//                job.setPrintable(panel);
-//                if (job.printDialog()) {
-//                    try {
-//                        job.print();
-//                    } catch (PrinterException ex) {
-//                        JOptionPane.showMessageDialog(null, "La impresion se cancelo");
-//                    }
-//                }
+                while(panel.isGuardadoC()==true){
+                panel.cambioImagenEnabled(true);
+                panel.iniciarImagen();
+                panel.cargaCambioImagenes();    
+                }
+                JOptionPane.showMessageDialog(null, "Se han guardado las imagenes");
             }
         });
 

@@ -1,16 +1,24 @@
 package Ventana;
 
 import java.awt.*;
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
-import java.io.File;
+import java.awt.image.*;
+import java.awt.print.*;
+import java.io.*;
+import javax.imageio.*;
 import javax.swing.*;
 
-public class Panel extends JPanel implements Printable {
+public class Panel extends JPanel {
 
     ControlImagen c = new ControlImagen();
     boolean pintado = false;
+    boolean cambiar = false;
+    ImageIcon imagenes[] = new ImageIcon[10];
+    BufferedImage image;
+    Graphics gr;
+    String destino = "C:/GeneradorNFT/";
+    int i = 1;
+    String numerador = String.valueOf(i);
+    String terminoRuta = " imagen.png";
 
     public Panel() {
         iniciarPanel();
@@ -19,50 +27,14 @@ public class Panel extends JPanel implements Printable {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        if (pintado == true && c.getImagen1() != null) {
-            g.drawImage(c.getImagen1().getImage(), 0, 0, 500, 500, this);
-
-            if (pintado == true && c.getImagen2() != null) {
-                g.drawImage(c.getImagen2().getImage(), 0, 0, 500, 500, this);
-
-                if (pintado == true && c.getImagen3() != null) {
-                    g.drawImage(c.getImagen3().getImage(), 0, 0, 500, 500, this);
-
-                    if (pintado == true && c.getImagen4() != null) {
-                        g.drawImage(c.getImagen4().getImage(), 0, 0, 500, 500, this);
-
-                        if (pintado == true && c.getImagen5() != null) {
-                            g.drawImage(c.getImagen5().getImage(), 0, 0, 500, 500, this);
-
-                            if (pintado == true && c.getImagen6() != null) {
-                                g.drawImage(c.getImagen6().getImage(), 0, 0, 500, 500, this);
-                                
-                                if (pintado == true && c.getImagen7() != null) {
-                                    g.drawImage(c.getImagen7().getImage(), 0, 0, 500, 500, this);
-
-                                    if (pintado == true && c.getImagen8() != null) {
-                                        g.drawImage(c.getImagen8().getImage(), 0, 0, 500, 500, this);
-
-                                        if (pintado == true && c.getImagen9() != null) {
-                                            g.drawImage(c.getImagen9().getImage(), 0, 0, 500, 500, this);
-                                            
-                                            if (pintado == true && c.getImagen10() != null) {
-                                                g.drawImage(c.getImagen10().getImage(), 0, 0, 500, 500, this);
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+        for (int i = 0; i < c.getImagenes().length; i++) {
+            if (pintado == true && c.getImagen(i) != null) {
+                g.drawImage(c.getImagen(i).getImage(), 0, 0, 500, 500, this);
             }
         }
         if (pintado == false) {
 
         }
-
     }
 
     private void iniciarPanel() {
@@ -75,22 +47,42 @@ public class Panel extends JPanel implements Printable {
         c.enviarArchivosControlImagen(archivos);
     }
 
-    public void cambiarImagen() {
+    public void cargaCambioImagenes() {
         pintado = true;
-        c.mostrarImagenes();
-        repaint();
+        if (cambiar == false) {
+            c.mostrarImagenes();
+            repaint();
+        }
+        if (cambiar == true) {
+            c.cambiarImagenes();
+            repaint();
+        }
     }
 
-    @Override
-    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        if (pageIndex == 0) {
-            Graphics2D graphics2d = (Graphics2D) graphics;
-            graphics2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-            printAll(graphics2d);
-            return PAGE_EXISTS;
-        } else {
-            return NO_SUCH_PAGE;
+    public void cambioImagenEnabled(boolean enable) {
+        this.cambiar = enable;
+    }
+
+    public void iniciarImagen() {
+        this.image = new BufferedImage(this.getWidth(), this.getHeight(), BufferedImage.TYPE_INT_RGB);
+        this.gr = image.createGraphics();
+        this.paint(gr);
+        File folder = new File(destino);
+        if (!folder.exists()) {
+            folder.mkdirs();
         }
+        File file = new File(destino + numerador + terminoRuta);
+        try {
+            ImageIO.write(image, "png", file); // Salvar la imagen en el fichero
+        } catch (IOException ex) {
+            System.out.println("Error al guardar archivo.");
+        }
+        i++;
+        this.numerador = String.valueOf(i);
+    }
+    
+    public boolean isGuardadoC(){
+        return c.isGuardado();
     }
 
 }
